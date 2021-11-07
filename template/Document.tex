@@ -1,0 +1,84 @@
+% 1. Стиль и язык
+\documentclass[utf8x, 14pt]{G7-32} % Стиль (по умолчанию будет 14pt) А4, шрифт 12пунктов
+\usepackage{ifthen}
+%\title{Руководство пользователя}
+%\usepackage[utf8]{inputenc}%включаем свою кодировку: koi8-r или utf8 в UNIX, cp1251 в Windows
+%\usepackage[english,russian]{babel}%используем русский и английский языки с переносами
+\usepackage[hidelinks]{hyperref} %ссылки на рисунки в документе
+\usepackage{graphicx} %хотим вставлять рисунки
+%\usepackage{xcolor} %изменение цвета текста
+\usepackage{listings} %вставка кода программ
+\usepackage{ragged2e} % выравнивание по краям
+\usepackage{titlesec}
+
+\usepackage{url} % hyperref works too
+\usepackage{csvsimple}
+\begin{filecontents*}{users-list.csv}
+\end{filecontents*}
+
+\usepackage{array}
+\usepackage{float}
+
+% Путь к рисункам
+\graphicspath{{img/}}
+
+% отключение переносов слов
+%\tolerance-1
+%\pretolerance=10000
+
+\newcommand{\MainDomain}{domain.name}
+\newcommand{\MailDomain}{@mail.domain.name}
+\newcommand{\CompanyName}{Comany Name, LLC}
+
+\def\appendix{}
+
+\begin{document}
+
+\frontmatter % выключает нумерацию ВСЕГО; здесь начинаются ненумерованные главы: реферат, введение, глоссарий, сокращения и прочее.
+
+% Стиль титульного листа и заголовки
+\include{Document-Title}
+%\maketitle %создает титульную страницу
+
+
+%\begin{executors}
+%\personalSignature{Исполнитель}{Луньков С.В.}
+%\end{executors}
+
+
+%\listoffigures                         % Список рисунков
+
+%\listoftables                          % Список таблиц
+
+%\NormRefs % Нормативные ссылки 
+% Команды \breakingbeforechapters и \nonbreakingbeforechapters
+% управляют разрывом страницы перед главами.
+% По-умолчанию страница разрывается.
+
+% \nobreakingbeforechapters
+% \breakingbeforechapters
+
+\tableofcontents
+
+\printnomenclature % Автоматический список сокращений
+
+\input{introduce} % Введение
+
+\mainmatter % это включает нумерацию глав и секций в документе ниже
+
+\input{ch-main}
+
+\backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
+
+
+\ifdefined\appendix
+\include{appendix} % Тут идут приложения
+\fi
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
